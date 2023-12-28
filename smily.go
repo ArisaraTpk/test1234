@@ -30,8 +30,9 @@ func validate(data interface{}) bool {
 }
 
 func checkTwoChar(count int, str []string) int {
-	data := SmilyTwoSplit{
+	data := SmilySplit{
 		EyeChar:   str[0],
+		NoseChar:  "-",
 		MouthChar: str[1],
 	}
 	if validate(data) {
@@ -41,7 +42,7 @@ func checkTwoChar(count int, str []string) int {
 }
 
 func checkTreeChar(count int, str []string) int {
-	data := SmilyTreeSplit{
+	data := SmilySplit{
 		EyeChar:   str[0],
 		NoseChar:  str[1],
 		MouthChar: str[2],
@@ -52,12 +53,7 @@ func checkTreeChar(count int, str []string) int {
 	return count
 }
 
-type SmilyTwoSplit struct {
-	EyeChar   string `json:"-" validate:"required,oneof=: ;'"`
-	MouthChar string `json:"-" validate:"required,oneof=) D"`
-}
-
-type SmilyTreeSplit struct {
+type SmilySplit struct {
 	EyeChar   string `json:"-" validate:"required,oneof=: ;'"`
 	NoseChar  string `json:"-" validate:"required,oneof=- ~"`
 	MouthChar string `json:"-" validate:"required,oneof=) D"`
